@@ -21,14 +21,17 @@
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
 </head>
-<body style="background-color: #969696;">
+<body>
     <div id="game-container">
         <script>
             let bg;
             let player;
             let star;
             let score = 0;
-            
+
+            function preload() {
+                bg = loadImage('/mnt/data/A_dark,_eerie_cemetery_in_the_woods_at_night,_with.png');
+            }
 
             function setup() {
                 const canvas = createCanvas(1000, 1000);
@@ -38,14 +41,7 @@
             }
 
             function draw() {
-                let bg;
-
-function preload() {
-    bg = loadImage('ghostpic.jpg');
-}}
-
-function draw() {
-    background(bg);
+                background(bg);
                 player.update();
                 player.show();
                 star.show();
