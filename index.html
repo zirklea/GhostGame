@@ -25,6 +25,9 @@
     <div id="game-container">
         <script>
             let bg;
+            let clickedMessage = "";
+            let messageX = 0;
+            let messageY = 0;
 
             function preload() {
                 bg = loadImage('ghostpic.jpg');
@@ -39,6 +42,14 @@
                 background(bg);
                 displayCoordinates();
                 checkMouseOverGravestones();
+
+                // Display the clicked message if available
+                if (clickedMessage !== "") {
+                    fill(255);
+                    textSize(24);
+                    textAlign(CENTER);
+                    text(clickedMessage, messageX, messageY);
+                }
             }
 
             // Display mouse coordinates function
@@ -88,9 +99,9 @@
                         mouseY > gravestone.y &&
                         mouseY < gravestone.y + gravestone.h
                     ) {
-                        fill(255);
-                        textSize(24);
-                        text(gravestone.label, gravestone.x + gravestone.w / 2, gravestone.y - 10);
+                        clickedMessage = gravestone.message + ' (Zone ' + gravestone.label + ')';
+                        messageX = width / 2;
+                        messageY = height / 2;
                     }
                 }
             }
