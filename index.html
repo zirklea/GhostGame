@@ -59,6 +59,7 @@
             ];
 
             function checkMouseOverGravestones() {
+                let isHovering = false;
                 for (let gravestone of gravestones) {
                     if (
                         mouseX > gravestone.x &&
@@ -66,9 +67,16 @@
                         mouseY > gravestone.y &&
                         mouseY < gravestone.y + gravestone.h
                     ) {
+                        isHovering = true;
                         fill(255, 0, 0, 100);
                         rect(gravestone.x, gravestone.y, gravestone.w, gravestone.h);
                     }
+                }
+
+                if (isHovering) {
+                    cursor('pointer');
+                } else {
+                    cursor('default');
                 }
             }
         </script>
