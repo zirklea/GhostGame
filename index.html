@@ -28,10 +28,7 @@
             let player;
             let star;
             let score = 0;
-
-            function preload() {
-                bg = loadImage('ghostpic.jpg');
-            }
+            
 
             function setup() {
                 const canvas = createCanvas(1000, 1000);
@@ -41,10 +38,15 @@
             }
 
             function draw() {
-                background(bg);
-                displayCoordinates();
-                checkMouseOverGravestones();
+    background(bg);
+    displayCoordinates();
+                let bg;
 
+function preload() {
+    bg = loadImage('ghostpic.jpg');
+}
+    background(bg);
+    checkMouseOverGravestones();
                 player.update();
                 player.show();
                 star.show();
@@ -100,35 +102,37 @@
             }
 
             // Display mouse coordinates function
-            function displayCoordinates() {
-                fill(255);
-                textSize(16);
-                text('X: ' + mouseX + ' Y: ' + mouseY, 10, height - 10);
-            }
+function displayCoordinates() {
+    fill(255);
+    textSize(16);
+    text('X: ' + mouseX + ' Y: ' + mouseY, 10, height - 10);
+}
 
-            // Define gravestone interaction zones
-            let gravestones = [
-                { x: 200, y: 600, w: 50, h: 100 },
-                { x: 400, y: 550, w: 50, h: 100 },
-                { x: 600, y: 650, w: 50, h: 100 },
-                { x: 800, y: 600, w: 50, h: 100 }
-            ];
+// Define gravestone interaction zones
+let gravestones = [
+    { x: 200, y: 600, w: 50, h: 100 },
+    { x: 400, y: 550, w: 50, h: 100 },
+    { x: 600, y: 650, w: 50, h: 100 },
+    { x: 800, y: 600, w: 50, h: 100 },
+    { x: 300, y: 700, w: 60, h: 120 },
+    { x: 700, y: 500, w: 70, h: 110 }
+];
 
-            function checkMouseOverGravestones() {
-                for (let gravestone of gravestones) {
-                    if (
-                        mouseX > gravestone.x &&
-                        mouseX < gravestone.x + gravestone.w &&
-                        mouseY > gravestone.y &&
-                        mouseY < gravestone.y + gravestone.h
-                    ) {
-                        fill(255, 0, 0, 100);
-                        rect(gravestone.x, gravestone.y, gravestone.w, gravestone.h);
-                    }
-                }
-            }
+function checkMouseOverGravestones() {
+    for (let gravestone of gravestones) {
+        if (
+            mouseX > gravestone.x &&
+            mouseX < gravestone.x + gravestone.w &&
+            mouseY > gravestone.y &&
+            mouseY < gravestone.y + gravestone.h
+        ) {
+            fill(255, 0, 0, 100);
+            rect(gravestone.x, gravestone.y, gravestone.w, gravestone.h);
+        }
+    }
+}
 
-            class Star {
+class Star {
                 constructor() {
                     this.x = random(width);
                     this.y = random(height);
@@ -137,12 +141,12 @@
 
                 show() {
                     fill(255, 215, 0);
-                    drawStar(this.x, this.y, this.size / 2, this.size, 5);
+                    star(this.x, this.y, this.size / 2, this.size, 5);
                 }
             }
 
             // Helper function to draw a star
-            function drawStar(x, y, radius1, radius2, npoints) {
+            function star(x, y, radius1, radius2, npoints) {
                 let angle = TWO_PI / npoints;
                 let halfAngle = angle / 2.0;
                 beginShape();
