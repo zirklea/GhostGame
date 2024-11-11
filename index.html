@@ -50,12 +50,12 @@
 
             // Define gravestone interaction zones
             let gravestones = [
-                { x: 200, y: 600, w: 50, h: 100 },
-                { x: 400, y: 550, w: 50, h: 100 },
-                { x: 600, y: 650, w: 50, h: 100 },
-                { x: 800, y: 600, w: 50, h: 100 },
-                { x: 300, y: 700, w: 60, h: 120 },
-                { x: 700, y: 500, w: 70, h: 110 }
+                { x: 200, y: 600, w: 50, h: 100, message: 'You hear a faint rustling.' },
+                { x: 400, y: 550, w: 50, h: 100, message: 'A cold breeze touches your skin.' },
+                { x: 600, y: 650, w: 50, h: 100, message: 'You see a shadow move.' },
+                { x: 800, y: 600, w: 50, h: 100, message: 'A distant whisper echoes.' },
+                { x: 300, y: 700, w: 60, h: 120, message: 'You hear the crunch of leaves.' },
+                { x: 700, y: 500, w: 70, h: 110, message: 'Something glimmers in the moonlight.' }
             ];
 
             function checkMouseOverGravestones() {
@@ -77,6 +77,21 @@
                     cursor('pointer');
                 } else {
                     cursor('default');
+                }
+            }
+
+            function mousePressed() {
+                for (let gravestone of gravestones) {
+                    if (
+                        mouseX > gravestone.x &&
+                        mouseX < gravestone.x + gravestone.w &&
+                        mouseY > gravestone.y &&
+                        mouseY < gravestone.y + gravestone.h
+                    ) {
+                        fill(255);
+                        textSize(24);
+                        text(gravestone.message, width / 2 - 150, height / 2);
+                    }
                 }
             }
         </script>
