@@ -50,6 +50,14 @@
                 displayCoordinates();
                 checkMouseOverGravestones();
 
+                if (score >= 60) {
+                    fill(0, 200, 0);
+                    textSize(32);
+                    textAlign(CENTER);
+                    text('Congratulations! You have completed the game!', width / 2, height / 2);
+                    noLoop();
+                }
+
                 if (clickedMessage !== "") {
                     fill(255);
                     textSize(24);
