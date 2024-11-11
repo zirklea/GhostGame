@@ -21,4 +21,80 @@
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
 </head>
-<body st
+<body style="background-color: #969696;">
+    <div id="game-container">
+        <script>
+            let bg;
+
+            function preload() {
+                bg = loadImage('ghostpic.jpg');
+            }
+
+            function setup() {
+                const canvas = createCanvas(1000, 1000);
+                canvas.parent("game-container");
+            }
+
+            function draw() {
+                background(bg);
+                displayCoordinates();
+                checkMouseOverGravestones();
+            }
+
+            // Display mouse coordinates function
+            function displayCoordinates() {
+                fill(255);
+                textSize(16);
+                text('X: ' + mouseX + ' Y: ' + mouseY, 10, height - 10);
+            }
+
+            // Define gravestone interaction zones
+            let gravestones = [
+                { x: 200, y: 600, w: 50, h: 100, message: 'You hear a faint rustling.', label: '1' },
+                { x: 400, y: 550, w: 50, h: 100, message: 'A cold breeze touches your skin.', label: '2' },
+                { x: 600, y: 650, w: 50, h: 100, message: 'You see a shadow move.', label: '3' },
+                { x: 800, y: 600, w: 50, h: 100, message: 'A distant whisper echoes.', label: '4' },
+                { x: 300, y: 700, w: 60, h: 120, message: 'You hear the crunch of leaves.', label: '5' },
+                { x: 700, y: 500, w: 70, h: 110, message: 'Something glimmers in the moonlight.', label: '6' }
+            ];
+
+            function checkMouseOverGravestones() {
+                let isHovering = false;
+                for (let gravestone of gravestones) {
+                    if (
+                        mouseX > gravestone.x &&
+                        mouseX < gravestone.x + gravestone.w &&
+                        mouseY > gravestone.y &&
+                        mouseY < gravestone.y + gravestone.h
+                    ) {
+                        isHovering = true;
+                        fill(255, 0, 0, 100);
+                        rect(gravestone.x, gravestone.y, gravestone.w, gravestone.h);
+                    }
+                }
+
+                if (isHovering) {
+                    cursor('pointer');
+                } else {
+                    cursor('default');
+                }
+            }
+
+            function mousePressed() {
+                for (let gravestone of gravestones) {
+                    if (
+                        mouseX > gravestone.x &&
+                        mouseX < gravestone.x + gravestone.w &&
+                        mouseY > gravestone.y &&
+                        mouseY < gravestone.y + gravestone.h
+                    ) {
+                        fill(255);
+                        textSize(24);
+                        text(gravestone.label, gravestone.x + gravestone.w / 2, gravestone.y - 10);
+                    }
+                }
+            }
+        </script>
+    </div>
+</body>
+</html>
