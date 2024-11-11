@@ -81,12 +81,12 @@
             }
 
             let gravestones = [
-                { x: 200, y: 600, w: 50, h: 100, message: 'You hear a faint rustling.', label: '1' },
-                { x: 400, y: 550, w: 50, h: 100, message: 'A cold breeze touches your skin.', label: '2' },
-                { x: 600, y: 650, w: 50, h: 100, message: 'You see a shadow move.', label: '3' },
-                { x: 800, y: 600, w: 50, h: 100, message: 'A distant whisper echoes.', label: '4' },
-                { x: 300, y: 700, w: 60, h: 120, message: 'You hear the crunch of leaves.', label: '5' },
-                { x: 700, y: 500, w: 70, h: 110, message: 'Something glimmers in the moonlight.', label: '6' }
+                { x: 200, y: 600, w: 50, h: 100, message: 'A ghostly figure appears, offering you a spectral key.' },
+                { x: 400, y: 550, w: 50, h: 100, message: 'A cold breeze carries the whisper of a ghost, asking for your help.' },
+                { x: 600, y: 650, w: 50, h: 100, message: 'A shadowy spirit emerges, inviting you to follow it into the darkness.' },
+                { x: 800, y: 600, w: 50, h: 100, message: 'A ghostly child appears, holding out a spectral doll.' },
+                { x: 300, y: 700, w: 60, h: 120, message: 'You see a ghostly figure, pointing towards an old grave.' },
+                { x: 700, y: 500, w: 70, h: 110, message: 'A spectral voice asks you to light a candle at a tombstone.' }
             ];
 
             function checkMouseOverGravestones() {
@@ -117,12 +117,12 @@
                         // Accept option
                         score += 10;
                         optionsVisible = false;
-                        clickedMessage = "You accepted the task.";
+                        clickedMessage = "You accepted the ghost's offer.";
                     } else if (mouseX > width / 2 - 100 && mouseX < width / 2 + 100 && mouseY > height / 2 + 90 && mouseY < height / 2 + 120) {
                         // Decline option
                         score -= 5;
                         optionsVisible = false;
-                        clickedMessage = "You declined the task.";
+                        clickedMessage = "You declined the ghost's request.";
                     }
                     return;
                 }
@@ -134,7 +134,7 @@
                         mouseY > gravestone.y &&
                         mouseY < gravestone.y + gravestone.h
                     ) {
-                        clickedMessage = gravestone.message + ' (Zone ' + gravestone.label + ')';
+                        clickedMessage = gravestone.message;
                         messageX = width / 2;
                         messageY = height / 2;
                         optionsVisible = true;
